@@ -19,16 +19,24 @@ the format below works in place of sign-server.
 
 ## Frame format
 
-`GET SIGN_SERVER_URL` must return exactly **8192 bytes**: 128×32 pixels in
-RGB565, 2 bytes per pixel, little-endian (`RRRRRGGG GGGBBBBB` as a uint16), row
-by row from the top-left. The bytes are copied straight into the display with
-`bitmaptools.readinto`, so the sign does no per-pixel work.
+`GET SIGN_SERVER_URL` returns **1 to 30 frames** back to back, each **8192
+bytes**: 128×32 pixels in RGB565, 2 bytes per pixel, little-endian
+(`RRRRRGGG GGGBBBBB` as a uint16), row by row from the top-left.
+
+- **One frame** is a still image.
+- **Several frames** are an animation. The `X-Frame-Ms` response header says
+  how long to show each one, and the sign loops them until the next poll.
+
+Each frame is copied straight into the display with `bitmaptools.readinto`, so
+the sign does no per-pixel work. 30 frames is about 240 KB, well within the
+MatrixPortal S3's memory (it prints its free memory at startup).
 
 ## Behavior
 
 - Fetches every `SIGN_REFRESH_S` seconds (30 by default).
-- If a fetch fails, returns a non-200 status, or the body isn't 8192 bytes, the
-  last frame stays on screen and it tries again on the next cycle. After
+- If a fetch fails, returns a non-200 status, or the body isn't a whole number
+  of 8192-byte frames (1–30), the last frames stay on screen and it tries again
+  on the next cycle. After
   `SIGN_NO_SIGNAL_AFTER` failures in a row (2 by default, about a minute) it
   shows **NO SIGNAL** in rainbow colors instead, and goes back to the picture
   as soon as a frame arrives. Errors are printed to the serial console.
