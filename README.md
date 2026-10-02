@@ -59,3 +59,7 @@ firmware.
 | `SIGN_ROTATION`           | `180`   | Display rotation (0, 90, 180, 270)            |
 | `SIGN_COLOR_ORDER`        | `"RBG"` | Panel color wiring; this sign needs `"RBG"`   |
 | `SIGN_BIT_DEPTH`          | `5`     | Color depth per channel, 1–6                  |
+
+## License
+
+MIT, see [LICENSE](LICENSE).
