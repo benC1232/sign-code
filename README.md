@@ -1,18 +1,21 @@
 # sign-code
 
-CircuitPython client for a 128×32 LED sign (the East Side Urbanism
-TransitTracker hardware: an Adafruit MatrixPortal S3 driving two 64×32 HUB75
-panels). It does no drawing of its own: every 30 s it fetches one full frame of
-pixels from [sign-server](https://github.com/led-info-sign/sign-server) and
-puts it on the panels.
+CircuitPython client for a 128×32 LED sign. I'm running it on **DIY
+TransitTracker hardware** (East Side Urbanism's TransitTracker design): an
+Adafruit MatrixPortal S3 driving two 64×32 HUB75 panels.
 
-Part of [led-info-sign](https://github.com/led-info-sign):
+The sign does no drawing of its own. Every 30 s it fetches one full frame of
+pixels from a server and puts it on the panels. Everything you see is drawn
+elsewhere:
 
-| Repo | Runs on | Does |
+| Part | Runs on | Does |
 |------|---------|------|
-| **sign-code** | the sign | Shows whatever pixels the server hands it |
-| [sign-server](https://github.com/led-info-sign/sign-server) | a Raspberry Pi | Holds the screen; providers post panels to it |
-| [weather-provider](https://github.com/led-info-sign/weather-provider) | a Raspberry Pi | Weather and rain radar panels |
+| **sign-code** (this repo) | the sign | Shows whatever pixels the server hands it |
+| sign-server | a Raspberry Pi | Holds the screen; providers post panels to it |
+| weather-provider | a Raspberry Pi | Weather and rain radar panels |
+
+The other two aren't published yet. Any HTTP server that returns frames in the
+format below works.
 
 ## Frame format
 
