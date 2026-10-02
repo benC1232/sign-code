@@ -1,0 +1,12 @@
+# Copy to the CIRCUITPY drive as settings.toml and fill in. Read via os.getenv().
+CIRCUITPY_WIFI_SSID = "your-ssid"
+CIRCUITPY_WIFI_PASSWORD = "your-password"
+
+# Where to fetch frames from (the Pi running sign-server).
+SIGN_SERVER_URL = "http://<pi-address>:5001/frame"
+
+# Optional
+# SIGN_REFRESH_S = 30        # seconds between fetches
+# SIGN_ROTATION = 180        # 0, 90, 180, 270
+# SIGN_COLOR_ORDER = "RBG"   # panel wiring; this sign needs "RBG"
+# SIGN_BIT_DEPTH = 5         # 1-6; higher = smoother color, more flicker risk
