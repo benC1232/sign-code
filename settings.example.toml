@@ -1,12 +1,21 @@
 # Copy to the CIRCUITPY drive as settings.toml and fill in. Read via os.getenv().
+# Every setting code.py reads is listed here with its default.
+
+# WiFi (required)
 CIRCUITPY_WIFI_SSID = "your-ssid"
 CIRCUITPY_WIFI_PASSWORD = "your-password"
 
-# Where to fetch frames from (the Pi running sign-server).
+# Where to fetch frames from: the machine running sign-server (required)
 SIGN_SERVER_URL = "http://<pi-address>:5001/frame"
 
-# Optional
-# SIGN_REFRESH_S = 30        # seconds between fetches
-# SIGN_ROTATION = 180        # 0, 90, 180, 270
-# SIGN_COLOR_ORDER = "RBG"   # panel wiring; this sign needs "RBG"
-# SIGN_BIT_DEPTH = 5         # 1-6; higher = smoother color, more flicker risk
+# Seconds between fetches
+SIGN_REFRESH_S = 30
+
+# Display rotation: 0, 90, 180 or 270
+SIGN_ROTATION = 180
+
+# Panel color wiring. This sign needs "RBG"; most HUB75 panels use "RGB".
+SIGN_COLOR_ORDER = "RBG"
+
+# Color depth per channel, 1-6. Higher is smoother color but can flicker.
+SIGN_BIT_DEPTH = 5
