@@ -19,3 +19,6 @@ SIGN_COLOR_ORDER = "RBG"
 
 # Color depth per channel, 1-6. Higher is smoother color but can flicker.
 SIGN_BIT_DEPTH = 5
+
+# Failed fetches in a row before showing "NO SIGNAL" (1 = right away)
+SIGN_NO_SIGNAL_AFTER = 2

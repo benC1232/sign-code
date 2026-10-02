@@ -28,9 +28,12 @@ by row from the top-left. The bytes are copied straight into the display with
 
 - Fetches every `SIGN_REFRESH_S` seconds (30 by default).
 - If a fetch fails, returns a non-200 status, or the body isn't 8192 bytes, the
-  last frame stays on screen and it tries again on the next cycle. Errors are
-  printed to the serial console.
-- Reconnects to WiFi on its own if the connection drops.
+  last frame stays on screen and it tries again on the next cycle. After
+  `SIGN_NO_SIGNAL_AFTER` failures in a row (2 by default, about a minute) it
+  shows **NO SIGNAL** in rainbow colors instead, and goes back to the picture
+  as soon as a frame arrives. Errors are printed to the serial console.
+- Reconnects to WiFi on its own if the connection drops (showing NO SIGNAL
+  while it can't).
 
 ## Install on the sign
 
@@ -44,8 +47,8 @@ Built against CircuitPython 10.0.x on the MatrixPortal S3. Copy to the
 
 Libraries needed in `CIRCUITPY/lib`, from the
 [Adafruit CircuitPython bundle](https://circuitpython.org/libraries):
-`adafruit_matrixportal`, `adafruit_requests` and `adafruit_connection_manager`,
-plus their dependencies. `bitmaptools` and `displayio` are built into the
+`adafruit_matrixportal`, `adafruit_requests`, `adafruit_connection_manager` and
+`adafruit_display_text`, plus their dependencies. `bitmaptools` and `displayio` are built into the
 firmware.
 
 ## Config (`settings.toml`)
@@ -59,6 +62,7 @@ firmware.
 | `SIGN_ROTATION`           | `180`   | Display rotation (0, 90, 180, 270)            |
 | `SIGN_COLOR_ORDER`        | `"RBG"` | Panel color wiring; this sign needs `"RBG"`   |
 | `SIGN_BIT_DEPTH`          | `5`     | Color depth per channel, 1–6                  |
+| `SIGN_NO_SIGNAL_AFTER`    | `2`     | Failed fetches in a row before NO SIGNAL      |
 
 ## License
 
