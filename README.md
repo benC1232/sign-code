@@ -11,11 +11,11 @@ elsewhere:
 | Part | Runs on | Does |
 |------|---------|------|
 | **sign-code** (this repo) | the sign | Shows whatever pixels the server hands it |
-| sign-server | a Raspberry Pi | Holds the screen; providers post panels to it |
+| [sign-server](https://github.com/benC1232/sign-server) | a Raspberry Pi | Holds the screen; providers post panels to it |
 | weather-provider | a Raspberry Pi | Weather and rain radar panels |
 
-The other two aren't published yet. Any HTTP server that returns frames in the
-format below works.
+weather-provider isn't published yet. Any HTTP server that returns frames in
+the format below works in place of sign-server.
 
 ## Frame format
 
